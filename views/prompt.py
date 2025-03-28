@@ -47,16 +47,23 @@ def login():
         elif not is_valid_email(email):
             st.error("Please enter a valid email address (e.g., example@gmail.com).")
         else:
-            emails = os.getenv("USER_EMAILS").split(",")
-            passwords = os.getenv("USER_PASSWORDS").split(",")
+            # Load the emails and passwords from .env
+            emails = os.getenv("USER_EMAILS").split(",")  # Split the emails into a list
+            passwords = os.getenv("USER_PASSWORDS").split(",")  # Split the passwords into a list
 
-            if email in emails and password in passwords and emails.index(email) == passwords.index(password):
-                st.session_state.logged_in = True
-                st.success("Login successful!")
-                st.rerun()
+            # Check if email exists in the list and password matches the same index
+            if email in emails:
+                email_index = emails.index(email)
+                if password == passwords[email_index]:
+                    st.session_state.logged_in = True
+                    st.success("Login successful!")
+                    st.rerun()  # Redirect to chatbot page
+                else:
+                    st.session_state.logged_in = False
+                    st.error("Invalid credentials")
             else:
                 st.session_state.logged_in = False
-                st.error("Invalid credentials")
+                st.error("Invalid email address")
 
     st.markdown("Note: For testing purpose only, selected users can log in. Register will be available soon.")
 
