@@ -33,7 +33,7 @@ def fuzzy_match(query, user_input, threshold=80):
     return score >= threshold  # Return True if the match is above the threshold
 
 def login():
-    st.subheader("Login")
+    st.subheader("🔐 Login")
     email = st.text_input("Email Address", key="login_email")
     password = st.text_input("Password", type="password", key="login_password")
 

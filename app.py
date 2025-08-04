@@ -1,9 +1,7 @@
 import streamlit as st
-
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 
 # Page layout
 about_dev = st.Page(
@@ -11,6 +9,13 @@ about_dev = st.Page(
     title = "About Developer",
     icon = ":material/account_circle:",
     default = True,
+)
+
+about_project = st.Page(
+    page = "views/about_project.py",
+    title = "About Project",
+    icon = ":material/account_circle:",
+    default = False,
 )
 
 medical_chatbot = st.Page(
@@ -22,11 +27,11 @@ medical_chatbot = st.Page(
 
 # Navigation Setup [without sections]
 # pg = st.navigation(pages=[about_page, medical_chatbot_page])
-
 # Navigation Setup [without sections]
+
 pg = st.navigation(
     {
-        "Info": [about_dev],
+        "Info": [about_dev, about_project],
         "Chatbot": [medical_chatbot],
     }
 )
@@ -40,3 +45,6 @@ st.sidebar.markdown("<h4 style='color: #00A2E8; font-weight: bold;'>֎ MedAssist
 
 # Run Navigation
 pg.run()
+
+
+## code .             conda prompt
