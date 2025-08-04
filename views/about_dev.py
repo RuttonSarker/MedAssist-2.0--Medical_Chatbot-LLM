@@ -1,14 +1,17 @@
 import streamlit as st
 import base64
+import os
 
 # --- Function to Convert Image to Base64 ---
 def convert_to_base64_from_file(file_path):
     with open(file_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# --- Load Images from Local Paths ---
-banner_base64 = convert_to_base64_from_file("assets/banner.jpg")
-profile_base64 = convert_to_base64_from_file("assets/developer.png")
+banner_path = "assets/banner.jpg"
+profile_path = "assets/developer.png"
+
+banner_base64 = convert_to_base64_from_file(banner_path) if os.path.exists(banner_path) else None
+profile_base64 = convert_to_base64_from_file(profile_path) if os.path.exists(profile_path) else None
 
 # --- Custom CSS for Layout & Styling ---
 st.markdown("""
